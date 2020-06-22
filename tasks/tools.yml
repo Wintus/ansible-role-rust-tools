@@ -7,10 +7,9 @@
 - name: "install tools by cargo"
   shell: "cargo install {{ item.crate | default(item.name) }}"
   register: cargo_install
-  vars:
-    installed: 101
-  failed_when: cargo_install.rc not in [0, installed]
-  changed_when: cargo_install.rc != installed
+  failed_when: cargo_install.rc != 0
+  changed_when: |
+    'Ignored' not in cargo_install.stderr
   loop:
     - name: exa # TODO: install binary
     - name: fd
