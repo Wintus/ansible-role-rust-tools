@@ -11,7 +11,7 @@
     installed: 101
   failed_when: cargo_install.rc not in [0, installed]
   changed_when: cargo_install.rc != installed
-  with_items:
+  loop:
     - name: exa
     - name: fd
       crate: fd-find
