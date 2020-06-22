@@ -19,9 +19,8 @@
     when: "'existing' not in install.stderr"
 
 - name: install rust by apt
-  when: ansible_pkg_mgr == "apt"
   become: yes
-  apt:
+  package:
     name: "{{ item }}"
   loop:
     - rustc
